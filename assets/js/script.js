@@ -23,3 +23,24 @@ function timeMatch() {
         };
     });
 };
+
+/*This will pull out the scores from the id key (individual storages) and then display them a*/
+function displayTasks() {
+    $(".description").each(function() {
+        var inputId = $(this).attr("id");
+
+        $(this).val(localStorage.getItem(inputId));
+    });
+};
+
+/*Click event to save user input in local storage via the key for individual id's and puts in the written text into the values*/
+$(".saveBtn").click(function() {
+    var timeSlots = $(this).siblings(".description").attr("id");
+    var toDoTasks = $(this).siblings(".description").val();
+
+    localStorage.setItem(timeSlots, toDoTasks);
+});
+
+dateTimer();
+timeMatch();
+displayTasks();
