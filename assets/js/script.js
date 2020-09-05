@@ -1,5 +1,10 @@
 var hour = moment().hours();
 
+/* This is variable used to get the Items from the key "tasks". 
+ Otherwise it will refer back to an empty object in the case the local storage 
+ has been cleared out */
+const tasks = JSON.parse(localStorage.getItem("tasks")) || {};
+
 
 // This is a function used to call up the current date using moment.js 
 function dateTimer() {
@@ -24,23 +29,26 @@ function timeMatch() {
     });
 };
 
-/*This will pull out the scores from the id key (individual storages) and then display them a*/
-function displayTasks() {
-    $(".description").each(function() {
-        var inputId = $(this).attr("id");
+/*This will pull out the scores from the id key (individual storages) 
+and then display them a*/
+$(".description").each(function() {
+    var taskID = $(this).attr("id");
 
-        $(this).val(localStorage.getItem(inputId));
-    });
+    $(this).val(tasks[taskID]);
+});
 };
 
-/*Click event to save user input in local storage via the key for individual id's and puts in the written text into the values*/
+/*Click event to save user input in local storage via the key for individual id's 
+and puts in the written text into the values*/
 $(".saveBtn").click(function() {
     var timeSlots = $(this).siblings(".description").attr("id");
     var toDoTasks = $(this).siblings(".description").val();
 
-    localStorage.setItem(timeSlots, toDoTasks);
+    tasks[timeSlots] = toDoTasks
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 });
 
+// These are used to activate the functions once the page is opened
 dateTimer();
 timeMatch();
 displayTasks();
