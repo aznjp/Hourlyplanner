@@ -17,10 +17,8 @@ equivalent to the actual current hour via the variable at top and css stylings*/
 function timeMatch() {
     $(".description").each(function() {
 
-        var rowHour = $(this).attr("id");
-        var timeDiv = parseInt(rowHour);
-
-        console.log(rowHour)
+        var timeDiv = $(this).attr("id")
+            // console.log(timeDiv)
 
         if (timeDiv == hour) {
             $(this).addClass("present");
