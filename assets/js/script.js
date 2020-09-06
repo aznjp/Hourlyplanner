@@ -1,10 +1,11 @@
 var hour = moment().hours();
+// console.log(hour)
 
 /* This is variable used to get the Items from the key "tasks". 
  Otherwise it will refer back to an empty object in the case the local storage 
  has been cleared out */
 const tasks = JSON.parse(localStorage.getItem("tasks")) || {};
-
+// console.log(tasks)
 
 // This is a function used to call up the current date using moment.js 
 function dateTimer() {
@@ -17,11 +18,13 @@ function timeMatch() {
     $(".description").each(function() {
 
         var rowHour = $(this).attr("id");
-        var rowNumber = parseInt(rowHour);
+        var timeDiv = parseInt(rowHour);
 
-        if (rowNumber == hour) {
+        console.log(rowHour)
+
+        if (timeDiv == hour) {
             $(this).addClass("present");
-        } else if (rowNumber < hour) {
+        } else if (timeDiv < hour) {
             $(this).addClass("past");
         } else {
             $(this).addClass("future");
@@ -34,7 +37,10 @@ and then display them a*/
 $(".description").each(function() {
     var taskID = $(this).attr("id");
 
+    // console.log(taskID)
     $(this).val(tasks[taskID]);
+
+    // console.log(tasks[taskID])
 });
 
 
