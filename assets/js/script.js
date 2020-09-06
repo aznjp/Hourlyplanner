@@ -36,7 +36,7 @@ $(".description").each(function() {
 
     $(this).val(tasks[taskID]);
 });
-};
+
 
 /*Click event to save user input in local storage via the key for individual id's 
 and puts in the written text into the values*/
